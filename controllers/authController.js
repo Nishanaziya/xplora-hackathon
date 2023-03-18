@@ -74,7 +74,9 @@ const signup = async (req, res) => {
   // }
 };
 
-
+const loginGet=(req,res) =>{
+  res.render("authentication/login")
+};
 
  const loginPost = async (req,res) =>{
   const { email, password } = req.body;
