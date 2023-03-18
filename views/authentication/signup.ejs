@@ -14,34 +14,39 @@
                 <div class="row">
                     <div class="input-group">
                         <label>First name </label>
-                        <input type="text" placholder="Enter your first name" required>
+                        <input type="text" placholder="Enter your first name" required id="fname"> <br />
+                        <span class="error" id="fnameErr"></span><br />
                     </div>
                     <div class="input-group">
                         <label>Last name</label>
-                        <input type="text" placholder="Enter your last name" required>
+                        <input type="text" placholder="Enter your last name" required id="lname"><br />
+                        <span class="error" id="lnameErr"></span><br />
                     </div>
                 </div>
                 <!-- Email -->
                 <div class="row">
                     <div class="input-group">
                         <label>Email </label>
-                        <input type="email" placholder="Enter your email address" required>
+                        <input type="email" placholder="Enter your email address" required id="email"><br />
+                        <span class="error" id="emailErr"></span><br />
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-group">
                         <label>Phone </label>
-                        <input type="number" placholder="Enter your your number" required>
+                        <input type="number" placholder="Enter your your number" required id="phone"><br />
+                        <span class="error" id="phoneErr"></span><br />
                     </div>
                     <div class="input-group">
                         <label>Password </label>
-                        <input type="password" placholder="Enter your your password" required>
+                        <input type="password" placholder="Enter your your password" required id="password"><br />
+                        <span class="error" id="passwordErr"></span><br />
                     </div>
                 </div>
   
             <!--  FORM FOOTER   -->
             <div class="form-footer">
-                <button class="btn">Create</button>
+                <button class="btn" id="btn">Create</button>
             </div>
         </form>
     </section>
@@ -50,6 +55,48 @@
         const changeSliderValue = (value) => {
             document.getElementById("rangeSliderLabel").innerText = value + " K";
         }
+
+        const form = document.querySelector("form");
+        const fnameErr = document.getElementById("fnameErr");
+        const lnameErr = document.getElementById("lnameErr");
+        const emailErr = document.getElementById("emailErr");
+        const phoneErr = document.getElementById("phoneErr");
+        const passwordErr = document.getElementById("passwordErr");
+
+
+        const btn = document.querySelector("button");
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const fname = document.getElementById("fname").value;
+          const lname = document.getElementById("lname").value;
+          const phone = document.getElementById("phone").value;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          //console.log(fname, lname, email, password);
+          emailErr.textContent = "";
+          passwordErr.textContent = "";
+          try {
+            const res = await fetch("/auth/signup", {
+              method: "POST",
+              body: JSON.stringify({ fname, lname,phone, email, password }),
+              headers: { "Content-Type": "application/json" },
+            });
+            const data = await res.json();
+            console.log(data);
+            if (data.errors) {
+              fnameErr.textContent = data.errors.fname;
+              lnameErr.textContent = data.errors.lname;
+              phoneErr.textContent = data.errors.phone;
+              emailErr.textContent = data.errors.email;
+              passwordErr.textContent = data.errors.password;
+            }
+            if (data.user) {
+              location.assign("/");
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        });
     </script>
 
 </body>
