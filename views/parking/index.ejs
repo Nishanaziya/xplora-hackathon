@@ -56,7 +56,7 @@ const fetchCurrentLocation = () => {
 
 
 
-const fetchNearByDestinations =  (latitude,longitude,range=50000) => {
+const fetchNearByDestinations =  (latitude,longitude,range=500000) => {
  
 const url = `http://localhost:3000/user/parking-slots-data?latitude=${latitude}&longitude=${longitude}&range=${range}`;
 

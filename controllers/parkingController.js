@@ -44,7 +44,7 @@ console.log(latitude,longitude,range)
         }
     }
    });
-   res.status(200).json({parking:nearByParkings});
+   res.status(200).json(nearByParkings);
   }
   catch(err){
     console.log(err);
