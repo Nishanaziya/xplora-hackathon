@@ -15,7 +15,7 @@ const parkingslotSchema = new Schema({
     },
 
     numberplate:{
-        type:number,
+        type:String,
         required:true,
     },
 
