@@ -21,8 +21,15 @@ catch(err){
       
 };
 const show= async (req,res) =>{
-
+ const  id=req.params.id;
+ try{
+    const parking=await Parking.findById(id);
+    res.status(201).json({parking:parking});
+ }
+ catch(err){
+    console.log(err);
+ }
     
-} 
+};
 
-model.exports={create,};
+model.exports={create,show};
