@@ -16,18 +16,41 @@ const create = async (req, res) => {
     console.log(err);
   }
 };
+
+
+
 const show = async (req, res) => {
-  const id = req.params.id;
-  try {
-    const parking = await Parking.findById(id);
-    res.status(201).json({ parking: parking });
-  } catch (err) {
-    console.log(err);
-  }
+  const {latitude,longitude,range}=req.query;
+  try{
+    const parking= await Parking.find({
+     location:{
+         $nearSphere:{
+             $geometry:{
+                 type:"Point",coordinates:[latitude,longitude]
+             },
+             $maxDistance:range
+         }
+     }
+    });
+    //res.status(200).json(parking);
+    console.log(parking);
+    res.render("parking/show",{"parking":parking});
+   }
+   catch(err){
+     console.log(err);
+   }
 };
+
+
+
+
 const indexGet = (req, res) => {
   res.render("parking/index", { title: "Parking" });
 };
+
+
+
+
 const index = async (req, res) => {
   const { latitude, longitude, range } = req.query;
 
@@ -51,4 +74,10 @@ console.log(latitude,longitude,range)
   }
 };
 
-module.exports = { create, show,indexGet,index };
+
+
+const book= (req,res) =>{
+   res.render("parking/book");
+};
+
+module.exports = { create, show,indexGet,index,book };

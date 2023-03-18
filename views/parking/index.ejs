@@ -27,20 +27,31 @@ attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStree
 
 console.log(data);
 
+// data.forEach((element) => {
+
+// L.marker([element.location.coordinates[0], element.location.coordinates[1]]).addTo(map)
+// .bindPopup('d')
+// .openPopup();
+// });
+
+
 data.forEach((element) => {
-
-L.marker([element.location.coordinates[0], element.location.coordinates[1]]).addTo(map)
-.bindPopup('d')
+const marker = L.marker([element.location.coordinates[0], element.location.coordinates[1]]).addTo(map)
+.bindPopup(`${element.location.coordinates[0]}  - ${element.location.coordinates[1]}`)
 .openPopup();
-});
 
+marker.on('click',  function() {
+  const markerLatLng = marker.getLatLng();
+        console.log('Marker clicked at latitude: ' + markerLatLng.lat + ', longitude: ' + markerLatLng.lng)
+        const url=`http://localhost:3000/user/parking-slot-data?latitude=${markerLatLng.lat}&longitude=${markerLatLng.lng}&range=10`;
+       window.location.replace(url);
+      });
+});
 L.marker([latitude,longitude]).addTo(map)
 .bindPopup('Current')
 .openPopup();
 
 };
-
-
 const fetchCurrentLocation = () => {
 
  if (navigator.geolocation) {
