@@ -78,7 +78,7 @@ const loginGet=(req,res) =>{
   res.render("authentication/login")
 };
 
- const loginPost = async (req,res) =>{
+ const login = async (req,res) =>{
   const { email, password } = req.body;
  
 
@@ -99,6 +99,6 @@ res.cookie("jwt", "", { maxAge: 1 });
 };
 
 
-module.exports = { signupGet,signup };
+module.exports = { signupGet,signup,login,loginGet };
 
 
