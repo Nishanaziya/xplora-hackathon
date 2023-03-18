@@ -95,15 +95,44 @@ body {
             <fieldset>
             <h2>Book your slots here!</h2>
         </div>
-     <input type="date" name="date" placeholder="date"><br>
-     <input type="text" name="model" placeholder="Vehicle Model"><br>
-     <input type="text" name="num" placeholder="Vehicle Number"><br>
-     <input type="text" name="name" placeholder="Driver's name"><br>
-     <input type="submit" name="sub" value="BOOK">
+		<input type="hidden" name="" id="parkings" value="<%= parkingId  %>">
+     <input type="date" name="date" id="date" placeholder="date"><br>
+     <input type="text" name="model" id="model" placeholder="Vehicle Model"><br>
+     <input type="text" name="num" id="number" placeholder="Vehicle Number"><br>
+     <input type="text" name="name" id="name" placeholder="Driver's name"><br>
+     <input type="submit" id="btn" name="sub" value="BOOK">
     </div>
 </fieldset>
     </form>
 </section>
 </body>
+<script>
+const btn=document.getElementById("btn");	
+btn.addEventListener("click", async function(e){
+	e.preventDefault();
+
+const parkingId=document.getElementById("parkings").value;
+const date=document.getElementById("date").value;
+const model=document.getElementById("model").value;
+const numberplate=document.getElementById("number").value;
+const belongsto=document.getElementById("name").value;
+console.log(date);
+console.log(model);
+console.log(number);
+console.log(name);
+try{
+const response=await fetch("http://localhost:3000/user/parking-slot-boking",{
+
+	method:"POST",body:JSON.stringify({parkingId,date,model,numberplate,belongsto}),headers:{"Content-Type":"application/json"}
+});
+}
+catch(err){
+console.log(err);
+}
+});
+
+
+
+</script>
 </html>
  
