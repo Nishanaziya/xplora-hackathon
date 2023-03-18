@@ -1,57 +1,139 @@
 <html>
-<head>
-<style>
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
+    <head>
+        <title>Unified ticket system</title>
+        <link rel="stylesheet" href=#>
+        <style>
+            *{
+    margin:0;
+    padding:0;
 }
-
-li {
-  float: right;
-}
-
-li a {
-  display: block;
-  color: rgb(0, 0, 0);
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: rgb(83, 75, 75);
+nav{
+    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(pic.webp);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
 }
 nav .logo {
-  font-size: 24px;
-  font-weight: bold;
-  
-}
-nav {
-  background-color: white;
-  color: #000000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+                font-size: 24px;
+                font-weight: bold;
+                
+              }
+
+.logo h4 a{
+   color: #fff;
+   text-decoration: none;
 }
 
-</style>
-</head>
+header{
+    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(pic.webp);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+ul{
+    float:right;
+    list-style-type: none;
+    margin-top: 25px;
+}
+
+ul li{
+    display:inline-block;
+}
+
+ul li a{
+    text-decoration: none;
+    color: #fff;
+    padding: 8px 20px;
+    transition: 0.6s ease;
+}
+ul li a:hover{
+    background-color: #fff;
+    color: #000;
+}
+
+.logo {
+    float:left;
+   margin-top: 20px;
+   margin-left: 20px;
+}
+
+.main{
+    max-width: 1200px;
+    height:auto;
+}
+ul li.active a{
+    background-color: #fff;
+    color: #000;
+}
+
+.title{
+    position:absolute;
+    top:50%;
+    left: 60%;
+    transform: translate(-50%,-50%);
+}
+
+.title h3{
+    color: #fff;
+    font-size: 20px;
+}
+
+.button{
+    position:absolute;
+    top:70%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+.btn{
+    border: 1px solid #fff;
+    padding: 10px 30px;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.6s ease;
+}
+
+.btn:hover{
+    background-color: #fff;
+    color: #000;
+}
+
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+        </style>
+    </head>
 <body>
-    <nav>
+<nav>
+    <div class="main">
         <div class="logo">
-            <h4><b>TravelTrek</b></h4>
-          </div>
-<ul>
-  <li><a class="active" href="#ticket"><b>Ticket Booking</a></li>
-  <li><a href="#park">Parking</a></li>
-  <li><a href="#login">Login</a></li>
-  <li><a href="#Signup">SignUp</b></a></li>
-</ul>
+            <h4><a href="#">TravelTrek</a></h4>
+         </div>
+        
+        <ul>
+            <li class="active"><a href="#">Ticket Booking</a></li>
+            <li><a href="#">Parking</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">SignUp</a></li>
+            
+        </ul>
+    </div>
 </nav>
+    <div class="title">
+        <h3>“Whether you want to cruise the backwaters, sip tea in a plantation, or relax on a beach, this alluring Indian state has it all and more.”</h3>
+   
+    </div>
+<div class="button">
+    
+    &nbsp;
+</div>
 
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima maiores obcaecati beatae! Pariatur minus, est veritatis aperiam, optio porro placeat quo consequatur explicabo, alias saepe eum? Quis eum obcaecati suscipit.</p>
-</body>
+
+</body>    
+    
 </html>
