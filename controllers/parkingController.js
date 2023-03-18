@@ -2,13 +2,15 @@ const Parking = require("../models/parking");
 const Booking=require("../models/slotbooking")
 
 const create = async (req, res) => {
-  const { address, totalSlots, availableSlots, latitude, longitude } = req.body;
-
+  const { address, totalSlots, availableSlots,latitude, longitude } = req.body;
+  const availableSlotNo=generateSlotsArray(availableSlots);
+  console.log(availableSlots);
   try {
     const parking = await Parking.create({
       address,
       totalSlots,
       availableSlots,
+      availableSlotNo,
       location: { type: "Point", coordinates: [latitude, longitude] },
     });
 
@@ -103,4 +105,12 @@ const bookPost= async (req,res) =>{
     }
 };
 
+
+const generateSlotsArray=(availableSlots)=>{
+     let array=[];
+     for(let i=1;i<=availableSlots;i++){
+         array.push(i);
+     }
+     return array;
+};
 module.exports = { create, show,indexGet,index,bookGet,bookPost};
