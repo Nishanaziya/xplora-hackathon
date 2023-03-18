@@ -31,8 +31,10 @@ const indexGet = (req, res) => {
 const index = async (req, res) => {
   const { latitude, longitude, range } = req.query;
 
+console.log(latitude,longitude,range)
+
   try{
-   const nearByParkings= Parking.find({
+   const nearByParkings= await Parking.find({
     location:{
         $nearSphere:{
             $geometry:{
