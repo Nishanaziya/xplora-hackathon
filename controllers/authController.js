@@ -26,10 +26,7 @@ const signup = async (req, res) => {
   }
 };
 
-<<<<<<< HEAD
+
 module.exports = { signupGet,signup };
-=======
 
 
-module.exports = { signup };
->>>>>>> 5d2eee6e0c0eaeb7a2d1d0fc0f711069e90ae07b
