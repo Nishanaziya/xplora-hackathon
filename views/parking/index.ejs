@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
-  <%- include('../partials/header.ejs') %>
+  <head>
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  </head>
 <body>
-  <%- include('../partials/nav.ejs') %>
   <button id="fetch-location">Click Me</button>
   <div id="map" class="map" style="height: 650px;"></div>
   <script>
@@ -29,7 +34,7 @@ L.marker([element.location.coordinates[0], element.location.coordinates[1]]).add
 .openPopup();
 });
 
-L.marker([latitude,longitude]).addTo(map)
+L.marker([11.62683,76.23427]).addTo(map)
 .bindPopup('Current')
 .openPopup();
 
@@ -42,7 +47,7 @@ const fetchCurrentLocation = () => {
      navigator.geolocation.getCurrentPosition(
        position => {
          const { latitude, longitude } = position.coords; 
-         console.log(latitude,longitude);
+         console.log("hai",latitude,longitude);
          fetchNearByDestinations(latitude,longitude);
          // renderMap(latitude, longitude);
      } 
@@ -53,7 +58,7 @@ const fetchCurrentLocation = () => {
 
 const fetchNearByDestinations =  (latitude,longitude,range=50000) => {
  
-const url = `http://localhost:3000/user/parking-slots?latitude=${longitude}&longitude=${latitude}&range=${range}`;
+const url = `http://localhost:3000/user/parking-slots-data?latitude=${latitude}&longitude=${longitude}&range=${range}`;
 
 fetch(url)
  .then(response => response.json())
@@ -74,6 +79,5 @@ fetchLocationButton.addEventListener('click', fetchCurrentLocation());
 
 
   </script>
-  <%- include('../partials/footer.ejs') %>
 </body>
 </html>
