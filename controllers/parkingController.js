@@ -83,11 +83,13 @@ const bookGet= (req,res) =>{
 
 
 const bookPost= async (req,res) =>{
-   const{date,model,numberplate,belongsto} = req.body;
+   const{parkingid,availableslotno,date,model,numberplate,belongsto} = req.body;
   
    
     try {
       const booking = await Booking.create({
+        parkingid,
+        availableslotno,
         date,
         model,
         numberplate,

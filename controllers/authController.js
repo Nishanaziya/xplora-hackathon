@@ -2,6 +2,12 @@ const User = require("../models/user");
 
 const bcrypt = require("bcrypt");
 
+
+const signupGet=(req,res)=>{
+
+res.render("authentication/signup");
+
+};
 const signup = async (req, res) => {
   const { fname, lname, email, phone, password } = req.body;
   console.log(fname, lname, email, phone, password);
@@ -21,5 +27,6 @@ const signup = async (req, res) => {
 };
 
 
+module.exports = { signupGet,signup };
 
-module.exports = { signup };
+

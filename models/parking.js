@@ -18,6 +18,10 @@ const parkingSchema = new Schema({
         type: Number,
         required: [true,"Please enter available slots"]
     },
+    availableslotno: {
+        type: [Number],
+        
+      },
     location: {
         type: {
           type: String,
