@@ -42,6 +42,12 @@ const createToken = (id) => {
 };
 
 
+
+const signupGet=(req,res)=>{
+
+res.render("authentication/signup");
+
+};
 const signup = async (req, res) => {
   const { fname, lname, email, phone, password } = req.body;
   console.log(fname, lname, email, phone, password);
@@ -91,5 +97,6 @@ res.cookie("jwt", "", { maxAge: 1 });
 };
 
 
+module.exports = { signupGet,signup };
 
-module.exports = { signup };
+

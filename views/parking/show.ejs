@@ -10,6 +10,17 @@
     Address:<%= parking[0].address %> <br>
     Total Slots:<%= parking[0].totalSlots %>  <br>
     Available Slots: <%= parking[0].availableSlots%> <br>
-    <button>BOOK NOW</button>
+   
+    <% if(parking[0].availableSlots>0){%>
+    <button id="btn">BOOK NOW</button>
+    <script>
+        const btn=getElementById("btn");
+        btn.addEventListener('click',function (){
+             window.location.replace("http://localhost:3000/user/parking-slot-booking");
+        });
+    </script>
+    <%}else{%>
+    <p> There are no available slots</p>
+    <%}%>
 </body>
 </html>
