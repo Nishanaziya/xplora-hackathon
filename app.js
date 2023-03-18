@@ -46,7 +46,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(parkingRoutes);
 
 app.get("/",(req, res) => {
-  res.render("views/index");
+  res.render("index");
 
 });
 
