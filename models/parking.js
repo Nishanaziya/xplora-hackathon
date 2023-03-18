@@ -18,7 +18,7 @@ const parkingSchema = new Schema({
         type: Number,
         required: [true,"Please enter available slots"]
     },
-    availableslotno: {
+    availableSlotNo: {
         type: [Number],
         
       },

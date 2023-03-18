@@ -99,6 +99,6 @@ res.cookie("jwt", "", { maxAge: 1 });
 };
 
 
-module.exports = { signupGet,signup,login,loginGet };
+module.exports = { signupGet,signup,login,loginGet,userLogoutGet };
 
 
