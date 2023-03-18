@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv").config();
 const parkingRoutes=require("./routes/parkingRoutes");
-
+const authRoutes=require("./routes/authRoutes");
 
 
 
@@ -43,7 +43,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(parkingRoutes);
+app.use(parkingRoutes,authRoutes);
 
 app.get("/",(req, res) => {
   res.render("index");
