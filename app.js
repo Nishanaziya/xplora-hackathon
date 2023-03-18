@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv").config();
-const parkingRoutes=require("../routes/parkingRoutes");
+const parkingRoutes=require("./routes/parkingRoutes");
 
 
 

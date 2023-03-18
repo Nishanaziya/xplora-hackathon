@@ -32,4 +32,5 @@ const show= async (req,res) =>{
     
 };
 
-model.exports={create,show};
+
+module.exports={create,show};

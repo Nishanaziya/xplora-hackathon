@@ -1,4 +1,4 @@
-const parkingController=require("../contollers/parkingController");
+const parkingController=require("../controllers/parkingController");
 
 const express=require("express");
 
@@ -6,7 +6,7 @@ const router=express.Router();
 
 
 
-router.get("/admin/parking-slot",parkingController.createGet);
+//router.get("/admin/parking-slot",parkingController.createGet);
 router.post("/admin/parking-slot",parkingController.create);
 // router.get("/user/parking-slot",parkingController.index);
 // router.get("/user/parking-slot-data",parkingController.index);
