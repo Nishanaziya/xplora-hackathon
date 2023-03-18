@@ -1,11 +1,110 @@
 <!DOCTYPE html>
-<head></head>
+<head>
+    <title>book slots</title>
+    <style>
+    @import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+
+* {margin: 0; padding: 0;}
+
+html {
+	height: 100%;
+	
+	background: 
+		linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+}
+
+body {
+	font-family: montserrat, arial, verdana;
+}
+
+#msform {
+	width: 400px;
+	margin: 50px auto;
+	text-align: center;
+	position: relative;
+}
+#msform fieldset {
+	background: white;
+	border: 0 none;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 10%;
+	
+	
+	position: relative;
+}
+
+#msform fieldset:not(:first-of-type) {
+	display: none;
+}
+
+#msform input, #msform textarea {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+
+#msform .action-button {
+	width: 100px;
+	background: #27AE60;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px;
+	margin: 10px 5px;
+  text-decoration: none;
+  font-size: 14px;
+}
+#msform .action-button:hover, #msform .action-button:focus {
+	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+#msform fieldset:first-of-type {
+  margin-bottom: 20px;
+}
+
+.fs-title {
+	font-size: 10px;
+	text-transform: uppercase;
+	color: #2C3E50;
+    margin-bottom: 10px;
+	
+}
+.fs-subtitle {
+	font-weight: normal;
+	font-size: 13px;
+	color: #666;
+	margin-bottom: 20px;
+}
+
+    </style>
+</head>
 <body>
-    <form action="">
-     Select Date<input type="date" name="date">
-     Vehicle Model<input type="text" name="model">
-     Vehicle Number<input type="text" name="num">
-     Driver's name<input type="text" name="name">
+    
+    <form action="" id="msform">
+        <div class="form-header">
+            <fieldset>
+            <h2>Book your slots here!</h2>
+        </div>
+     <input type="date" name="date" placeholder="date"><br>
+     <input type="text" name="model" placeholder="Vehicle Model"><br>
+     <input type="text" name="num" placeholder="Vehicle Number"><br>
+     <input type="text" name="name" placeholder="Driver's name"><br>
      <input type="submit" name="sub" value="BOOK">
+    </div>
+</fieldset>
     </form>
+</section>
 </body>
+</html>
+ 
