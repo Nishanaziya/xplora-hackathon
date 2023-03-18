@@ -7,26 +7,26 @@ const parkingSchema = new Schema({
     
     address: {
         type: String,
-        required: true,
-        unique: true
+        required: [true,"Please enter address"],
+        unique: [true,"Address already registered"]
     },
     totalSlots: {
         type: Number,
-        required: true,
+        required: [true,"Please enter total slots"]
     },
     availableSlots: {
         type: Number,
-        required: true
+        required: [true,"Please enter available slots"]
     },
     location: {
         type: {
           type: String,
           enum:['Point'],
-          required: true
+          required: [true,"Please enter the location"]
     },
     coordinates: {
           type: [Number],
-          required: true
+          required: [true,"Please enter the cordinates"]
         }
     },
 
