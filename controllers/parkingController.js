@@ -1,4 +1,5 @@
 const Parking = require("../models/parking");
+const Booking=require("../models/slotbooking")
 
 const create = async (req, res) => {
   const { address, totalSlots, availableSlots, latitude, longitude } = req.body;
@@ -76,8 +77,28 @@ console.log(latitude,longitude,range)
 
 
 
-const book= (req,res) =>{
+const bookGet= (req,res) =>{
    res.render("parking/book");
 };
 
-module.exports = { create, show,indexGet,index,book };
+
+const bookPost= async (req,res) =>{
+   const{date,model,numberplate,belongsto} = req.body;
+  
+   
+    try {
+      const booking = await Booking.create({
+        date,
+        model,
+        numberplate,
+        belongsto
+      });
+   
+   res.status(201).json(booking);
+    }
+    catch(err){
+      console.log(err);
+    }
+};
+
+module.exports = { create, show,indexGet,index,bookGet,bookPost};
