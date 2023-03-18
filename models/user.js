@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+const bcrypt = require("bcrypt");
+
 const userSchema = new Schema({
 
 
@@ -14,7 +16,6 @@ const userSchema = new Schema({
         type: String,
         required:[true,"Please enter last name"]
     },
-
 
     email :{
         type: String,
@@ -34,11 +35,18 @@ const userSchema = new Schema({
         type: String,
         required: [true,"Please enter a password"],
         minlength:[8,"Password must contain minimum 8 character"],
-        minlength:[16,"Password cannot exceed 16 characters"]
+        maxlength:[16,"Password cannot exceed 16 characters"]
     },
+
+    role :{
+        type: String,
+        required: [true,"Please enter your role"]
+    }
 
 
 },{ timestamps: true });
+
+
 
 userSchema.pre("save", async function(next){
     const salt = await bcrypt.genSalt();

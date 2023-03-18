@@ -21,7 +21,7 @@ const handleErrors = (err) => {
   //duplicate error
 
   if (err.code === 11000) {
-    errors.email = " that email is already registered";
+    errors.email = " that email/phone is already registered";
     return errors;
   }
   //validating errors
@@ -49,7 +49,8 @@ res.render("authentication/signup");
 
 };
 const signup = async (req, res) => {
-  const { fname, lname, email, phone, password } = req.body;
+  const { fname, lname, email, phone, password} = req.body;
+  const role="user";
   console.log(fname, lname, email, phone, password);
   try {
     const user = await User.create({
@@ -58,6 +59,7 @@ const signup = async (req, res) => {
       email,
       phone,
       password,
+      role,
     });
 
     const token = createToken(user._id);
