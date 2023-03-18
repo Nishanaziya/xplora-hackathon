@@ -14,9 +14,9 @@
     <% if(parking[0].availableSlots>0){%>
     <button id="btn">BOOK NOW</button>
     <script>
-        const btn=getElementById("btn");
+        const btn=document.getElementById("btn");
         btn.addEventListener('click',function (){
-             window.location.replace("http://localhost:3000/user/parking-slot-booking");
+             window.location.replace("http://localhost:3000/user/parking-slot-booking/<%= parking[0]._id %>");
         });
     </script>
     <%}else{%>

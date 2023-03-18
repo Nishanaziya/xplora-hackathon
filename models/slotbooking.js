@@ -4,10 +4,9 @@ const Schema = mongoose.Schema;
 
 const parkingslotSchema = new Schema(
   {
-    slotno:{
-        type:Number,
-        require:[true,"Slot number can't be empty"]
-
+    slotNo: {
+      type: Number,
+      require: [true, "Slot number can't be empty"],
     },
 
     parkingId: {
@@ -15,7 +14,7 @@ const parkingslotSchema = new Schema(
       ref: "Parking",
       require: [true, "Parking id cannott be empty"],
     },
-    
+
     date: {
       type: Date,
       required: [true, "Please select a date"],
