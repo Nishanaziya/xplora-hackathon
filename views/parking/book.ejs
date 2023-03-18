@@ -111,15 +111,16 @@ const btn=document.getElementById("btn");
 btn.addEventListener("click", async function(e){
 	e.preventDefault();
 
-const parkingId=document.getElementById("parkings").value;
+const parking=document.getElementById("parkings").value;
 const date=document.getElementById("date").value;
 const model=document.getElementById("model").value;
 const numberplate=document.getElementById("number").value;
 const belongsto=document.getElementById("name").value;
 console.log(date);
 console.log(model);
-console.log(number);
+console.log(numberplate);
 console.log(name);
+console.log(parkingId);
 try{
 const response=await fetch("http://localhost:3000/user/parking-slot-boking",{
 
