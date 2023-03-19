@@ -1,0 +1,53 @@
+<html>
+    <%- include('../partials/header.ejs') %>
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+    <form>
+        Enter your Name <br>
+        <input type="text" id="name"><br>
+        <span id="nameErr"></span><br>
+
+        Choose a date <br>
+        <input type="date" id="date"><br>
+        <span id="dateErr"></span><br>
+        No.of Tickets
+        <button id="increase"></button><span id="nooftickets"></span>
+        <button id="decrease"></button>
+    </form>
+
+<script>
+
+    let    ticketcount=1;
+
+     const name = document.getElementById("name");
+      const nameErr = document.getElementById("nameErr");
+      const date = document.getElementById("date");
+      const dateErr = document.getElementById("dateErr");
+     
+      const increase = document.getElementById("increase");
+      const nooftickets = document.getElementById("nooftickets");
+      const decrease = document.getElementById("decrease");
+    nooftickets.textContent=ticketcount;
+
+    increase.addEventListener("click",function(){
+        if (ticketcount<5){
+            ticketcount++;
+            console.log(ticketcount)
+        }
+    })
+      
+
+    decrease.addEventListener("click",function(){
+        if (ticketcount>1){
+            ticketcount--;
+            console.log(ticketcount)
+        }
+    })
+    
+</script>
+
+
+</body>    
+    
+</html>

@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv").config();
 const parkingRoutes=require("./routes/parkingRoutes");
 const authRoutes=require("./routes/authRoutes");
-
+const destinationRoutes=require("./routes/destinationRoutes");
 
 
 const app = express();
@@ -43,10 +43,10 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(parkingRoutes,authRoutes);
+app.use(parkingRoutes,authRoutes,destinationRoutes);
 
 app.get("/",(req, res) => {
-  res.render("index");
+  res.render("index",{title:"Home"});
 
 });
 

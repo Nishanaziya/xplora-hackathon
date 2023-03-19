@@ -36,14 +36,14 @@ const show = async (req, res) => {
     });
     //res.status(200).json(parking);
     console.log(parking);
-    res.render("parking/show", { parking: parking });
+    res.render("parking/show", { title:"Location",parking: parking });
   } catch (err) {
     console.log(err);
   }
 };
 
 const indexGet = (req, res) => {
-  res.render("parking/index", { title: "Parking" });
+  res.render("parking/index", { title: "Near by Parking" });
 };
 
 const index = async (req, res) => {
@@ -71,21 +71,30 @@ const index = async (req, res) => {
 
 const bookGet = (req, res) => {
   const id=req.params.id;
-  res.render("parking/book",{parkingId:id});
+  res.render("parking/book",{title:"Book Parking",parkingId:id});
 };
 
 const bookPost = async (req, res) => {
   const { parkingId, availableslotno, date, model, numberplate, belongsto } =
     req.body;
 
+    console.log(parkingId);
   try {
-    const parkDetails = await Parking.findById({ parkingId });
-    const availableSlotNo = parkDetails.availableSlotNo;
-    const availableSlots = parkDetails.availableSlotNo;
+    const parkDetails = await Parking.findById( parkingId );
 
-    const slotNo = availableSlotNo.pop();
+    console.log(parkDetails);
+
+    let availableSlotNo = parkDetails.availableSlotNo;
+    let availableSlots = parkDetails.availableSlots;
+
+    let slotNo = availableSlotNo.pop();
+
     availableSlots = availableSlots - 1;
+
+
+
     parkDetails.overwrite({
+      location: parkDetails.location,
       address: parkDetails.address,
       totalSlots: parkDetails.totalSlots,
       availableSlots,
@@ -94,7 +103,7 @@ const bookPost = async (req, res) => {
     await parkDetails.save();
 
     const booking = await Booking.create({
-      parkingid,
+      parkingId,
       slotNo,
       date,
       model,

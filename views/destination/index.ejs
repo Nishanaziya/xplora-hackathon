@@ -1,282 +1,71 @@
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+  <%- include('../partials/header.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    <h2></h2>
+    <form>
+      Select District <br />
+      <select id="district">
+        <option value="select">select</option>
+        <option value="trivandrum">Trivandrum</option>
+        <option value="kollam">Kollam</option>
+        <option value="pathanamthitta">Pathanamthitta</option>
+        <option value="alappuzha">Alappuzha</option>
+        <option value="kottayam">Kottayam</option>
+        <option value="idukki">Idukki</option>
+        <option value="eranankulam">Eranankulam</option>
+        <option value="thrissur">Thrissur</option>
+        <option value="palakkad">Palakkad</option>
+        <option value="malappuram">Malappuram</option>
+        <option value="calicut">Calicut</option>
+        <option value="wayanad">Wayanad</option>
+        <option value="kannur">Kannur</option>
+        <option value="kasarkode">Kasarkode</option></select
+      ><br />
+      <span id="districtErr"></span><br />
 
-/* Design */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+      Select Category <br />
+      <select id="category">
+        <option value="select">select</option>
 
-html {
-  background-color: #ecf9ff;
-}
+        <option value="museum">Museum</option>
+        <option value="amusement park">Amusement Park</option>
+        <option value="zoo">Zoo</option>
+        <option value="park">Park</option></select
+      ><br />
+      <span id="categoryErr"></span><br />
 
-body {
-  color: #272727;
-  font-family: 'Quicksand', serif;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0;
-  padding: 1rem;
-}
+      <button id="btn">Search</button>
+    </form>
+    <script>
+      const district = document.getElementById("district");
+      const category = document.getElementById("category");
+      const districtErr = document.getElementById("districtErr");
+      const categoryErr = document.getElementById("categoryErr");
+      const btn = document.getElementById("btn");
 
-.main{
-  max-width: 1200px;
-  margin: 0 auto;
-}
+      btn.addEventListener("click", async function (event) {
+        event.preventDefault();
+        categoryErr.textContent = "";
+        districtErr.textContent = "";
 
-h1 {
-    font-size: 24px;
-    font-weight: 400;
-    text-align: center;
-    font-family: cursive;
-}
- 
-h2 {
-    text-align: center;
-    color: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
+        let isErr = false;
 
-}
-a {
-    text-decoration: none;
-}
+        if (district.value == "select") {
+          districtErr.textContent = "Please select a district";
+        }
 
-img {
-  height: auto;
-  max-width: 100%;
-  vertical-align: middle;
-}
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 16px;
-}
+        if (category.value == "select") {
+          categoryErr.textContent = "Please select a category";
+        }
 
-button:hover {
-  background-color: #3e8e41;
-}
+        if (!isErr) {
+          const url = `http://localhost:3000/user/destinations-in?district=${district.value}&category=${category.value}`;
 
-.btn {
-  color: #ffffff;
-  padding: 0.8rem;
-  font-size: 14px;
-  text-transform: uppercase;
-  border-radius: 4px;
-  font-weight: 400;
-  display: block;
-  width: 100%;
-  cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: transparent;
-}
-
-.btn:hover {
-  background-color: rgba(255, 255, 255, 0.12);
-}
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.cards_item {
-  display: flex;
-  padding: 1rem;
-}
-
-@media (min-width: 40rem) {
-  .cards_item {
-    width: 50%;
-  }
-}
-
-@media (min-width: 56rem) {
-  .cards_item {
-    width: 25%;
-  }
-}
-
-.card {
-  background-color: white;
-  border-radius: 0.05rem;
-  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.card_content {
-  padding: 1rem;
-  background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
-}
-
-.card_title {
-  color: #ffffff;
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: capitalize;
-  margin: 0px;
-}
-
-.card_text {
-  color: #ffffff;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  margin-bottom: 1rem;    
-  font-weight: 400;
-}
-.made_by{
-  font-weight: 400;
-  font-size: 13px;
-  margin-top: 35px;
-  text-align: center;
-}
-</style>
-</head>
-<body>
-
-    <div class="main">
-        <h1>"Dont call it a dream,call it a plan"</h1>
-        <ul class="cards">
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="images\trivandrum.jpg" alt="Image 1" style="width: 300px; height: 220px;"></div>
-              <div class="card_content">
-                <h2 class="card_title"> Trivandrum </h2>
-                <a href="#"> <button class="btn card_btn">Explore Tvm</button></a>
-              </div>
-            </div>
-          </li>
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="images\kollam.jpg" alt="Image 2" style="width: 300px; height: 220px;"></div>
-              <div class="card_content">
-                <h2 class="card_title">Kollam</h2>
-                <a href="#"><button class="btn card_btn">Explore </button></a>
-              </div>
-            </div>
-          </li>
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="images\alappuzha.jpg" alt="Image 3" style="width: 300px; height: 220px;"></div>
-              <div class="card_content">
-                <h2 class="card_title">alappuzha</h2>
-                <a href="#"><button class="btn card_btn">Explore</button></a>
-              </div>
-            </div>
-          </li>
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="images\pathanamthitta.jpg" alt="Image 4" style="width: 300px; height: 220px;"></div>
-              <div class="card_content">
-                <h2 class="card_title">pathanamthitta</h2>
-                <a href="#"><button class="btn card_btn">Explore</button></a>
-              </div>
-            </div>
-          </li>
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="images\idukki.jpg" alt="Image 5" style="width: 300px; height: 220px;"></div>
-              <div class="card_content">
-                <h2 class="card_title">Idukki</h2>
-                <a href="#"><button class="btn card_btn">Explore</button></a>
-              </div>
-            </div>
-          </li>
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="images\kottayam.jpg" alt="Image 6" style="width: 300px; height: 220px;"></div>
-              <div class="card_content">
-                <h2 class="card_title">kottayam</h2>
-                <a href="#"><button class="btn card_btn">Explore</button></a>
-              </div>
-            </div>
-          </li>
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="images\ernakulam.jpg" alt="Image 7" style="width: 300px; height: 220px;"></div>
-              <div class="card_content">
-                <h2 class="card_title">Ernakulam</h2>
-                <a href="#"> <button class="btn card_btn">Explore</button></a>
-              </div>
-            </div>
-          </li>
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="images\thrissur.jpg" alt="Image 8" style="width: 300px; height: 220px;"></div>
-              <div class="card_content">
-                <h2 class="card_title">Thrissur</h2>
-                <a href="#"><button class="btn card_btn">Explore</button></a>
-              </div>
-            </div>
-          </li>
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="images\palakkad.jpg" alt="Image 9" style="width: 300px; height: 220px;"></div>
-              <div class="card_content">
-                <h2 class="card_title">Palakkad</h2>
-                <a href="#"><button class="btn card_btn">Explore</button></a>
-              </div>
-            </div>
-          </li>
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="images\malappuram.jpg" alt="Image 10" style="width: 300px; height: 220px;"></div>
-              <div class="card_content">
-                <h2 class="card_title">Malappuram</h2>
-                <a href="#"><button class="btn card_btn">Explore</button></a>
-              </div>
-            </div>
-          </li>
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="images\kozhikode.jpg" alt="Image 11" style="width: 300px; height: 220px;"></div>
-              <div class="card_content">
-                <h2 class="card_title">Kozhikode</h2>
-                <a href="#"><button class="btn card_btn">Explore</button></a>
-              </div>
-            </div>
-          </li>
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="images\wayanad.jpg" alt="Image 12" style="width: 300px; height: 220px;"></div>
-              <div class="card_content">
-                <h2 class="card_title">Wayanad</h2>
-                <a href="#"><button class="btn card_btn">Explore</button></a>
-              </div>
-            </div>
-          </li>
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="images\kannur.jpg" alt="Image 13" style="width: 300px; height: 220px;"></div>
-              <div class="card_content">
-                <h2 class="card_title">Kannur</h2>
-                <a href="#"><button class="btn card_btn">Explore</button></a>
-              </div>
-            </div>
-          </li>
-          <li class="cards_item">
-            <div class="card">
-              <div class="card_image"><img src="images\kasargod.jpg" alt="Image 14" style="width: 300px; height: 220px;"></div>
-              <div class="card_content">
-                <h2 class="card_title">kasargod</h2>
-                <a href="#"><button class="btn card_btn">Explore</button></a>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-</body>
+             const response = await fetch(url);
+        }
+      });
+    </script>
+  </body>
 </html>
