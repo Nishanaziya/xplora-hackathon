@@ -1,53 +1,125 @@
 <html>
-    <%- include('../partials/header.ejs') %>
-<body>
+  <%- include('../partials/header.ejs') %>
+  <body>
     <%- include('../partials/nav.ejs') %>
 
     <form>
-        Enter your Name <br>
-        <input type="text" id="name"><br>
-        <span id="nameErr"></span><br>
+      Enter your Name <br />
+      <input type="text" id="name" /><br />
+      <span id="nameErr"></span><br />
 
-        Choose a date <br>
-        <input type="date" id="date"><br>
-        <span id="dateErr"></span><br>
-        No.of Tickets
-        <button id="increase"></button><span id="nooftickets"></span>
-        <button id="decrease"></button>
+      Choose a date <br />
+      <input type="date" id="date" /><br />
+      <span id="dateErr"></span><br />
+      No.of Tickets
+      <button id="increase">+</button><span id="nooftickets"></span>
+      <button id="decrease">-</button><br />
+
+      <p id="destination"><%= destination.name%></p> <br>
+
+      Unit price:
+      <p id="price"><%= destination.price%></p> <br>
+      total: <p id="total"></p>
+      <br />
+
+      <button id="btn">CONFIRM</button>
     </form>
 
-<script>
+    <script>
+      let ticketcount = 1;
 
-    let    ticketcount=1;
-
-     const name = document.getElementById("name");
       const nameErr = document.getElementById("nameErr");
-      const date = document.getElementById("date");
       const dateErr = document.getElementById("dateErr");
-     
+      const unitPrice= document.getElementById("price").textContent;
+      const totalPrice=document.getElementById("total");
+      const btn=document.getElementById("btn");
+
       const increase = document.getElementById("increase");
       const nooftickets = document.getElementById("nooftickets");
       const decrease = document.getElementById("decrease");
-    nooftickets.textContent=ticketcount;
 
-    increase.addEventListener("click",function(){
-        if (ticketcount<5){
-            ticketcount++;
-            console.log(ticketcount)
+      let total= unitPrice;
+      totalPrice.textContent = total;
+      nooftickets.textContent = ticketcount;
+
+      increase.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (ticketcount < 5) {
+          ticketcount++;
+          nooftickets.textContent = ticketcount;
+          total=calculatePrice(unitPrice,ticketcount);
+
+          totalPrice.textContent= total;
+          console.log(total);
         }
-    })
-      
+      });
 
-    decrease.addEventListener("click",function(){
-        if (ticketcount>1){
-            ticketcount--;
-            console.log(ticketcount)
+      decrease.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        if (ticketcount > 1) {
+          ticketcount--;
+          nooftickets.textContent = ticketcount;
+          total=calculatePrice(unitPrice,ticketcount);
+
+          totalPrice.textContent= total;
+
+
+          console.log(total);
         }
-    })
-    
-</script>
+      });
+
+      const calculatePrice=(unitPrice,count)=>{
+
+        return(unitPrice*count);
+      }
+
+      btn.addEventListener("click",async function(e){
+        e.preventDefault();
+        const name = document.getElementById("name").value;
+        const date = document.getElementById("date").value;
+        const destination=document.getElementById("destination").textContent;
+
+        let isErr=false;
 
 
-</body>    
-    
+        if(!name){
+            nameErr.textContent="Please enter a name";
+            isErr = true;
+        }
+
+        if(!date){
+            dateErr.textContent="Please enter date";
+            isErr = true;
+        }
+
+        if(!isErr){
+            console.log(name,date,ticketcount,total)
+            try{
+
+            
+          const response=  await fetch('http://localhost:3000/user/book-destination',{
+            method: "POST",
+            body:JSON.stringify({
+                name:name,date:date,noofTickets:ticketcount,total:total,destination:destination
+            }),
+            headers: {
+                'Content-Type':'application/json'
+            }
+           });
+
+           const data = await response.json();
+           console.log(data);
+
+           if(data.ticket){
+            window.location.href="/";
+           }
+        }catch(err){
+            console.log(err);
+        }
+        }
+        
+      });
+    </script>
+  </body>
 </html>

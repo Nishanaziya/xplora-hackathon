@@ -6,11 +6,11 @@
     <%- include('../partials/nav.ejs') %>
 
 <%= destination.name %>
-<%= destintion.availableTickets %>
+<%= destination.availableTickets %>
 <%= destination.address %>
 <%= destination.price %>
 
-<a href="">BOOK NOW</a>
+<a href="/user/book-destination/<%= destination._id %>">BOOK NOW</a>
 
 </body>
 </html>
