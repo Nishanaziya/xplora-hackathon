@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <%- include('../partials/header.ejs') %>
-  <body>
+  <body bgcolor="#78a7ba">
     <%- include('../partials/nav.ejs') %>
     <h2></h2>
-    <form>
+    <form><center>
       Select District <br />
       <select id="district">
         <option value="select">select</option>
@@ -36,7 +36,7 @@
       ><br />
       <span id="categoryErr"></span><br />
 
-      <button id="btn">Search</button>
+      <button id="btn">Search</button></center>
     </form>
     <script>
       const district = document.getElementById("district");
