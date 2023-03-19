@@ -25,13 +25,20 @@ const bookingSchema = new Schema({
         type:String,
         required: [true,"Please enter Destination"],
 
-    }
+    },
 
+    total:{
+        type:String,
+        required: [true,"Please enter Total amount"],
 
-
-
-
-},{ timestamps: true });
+    },
+    belongsto:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        require: [true, "Belongs to cannot be empty"],
+      },
+  
+    },{ timestamps: true });
 
 
 const Booking = mongoose.model("Booking",bookingSchema);

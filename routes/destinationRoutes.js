@@ -10,7 +10,8 @@ router.get("/user/create-destinations",destinationController.createGet);
 router.post("/user/create-destinations",destinationController.create);
 router.get("/user/destination/:id",destinationController.show);
 //router.get("/user/destination/:id",destinationController.show);
-router.get("/user/book-destination/:id",destinationController.book);
+router.get("/user/book-destination/:id",destinationController.bookGet);
+router.post("/user/book-destination",destinationController.book);
 
 
 

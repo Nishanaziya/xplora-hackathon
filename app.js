@@ -5,6 +5,8 @@ const dotenv = require("dotenv").config();
 const parkingRoutes=require("./routes/parkingRoutes");
 const authRoutes=require("./routes/authRoutes");
 const destinationRoutes=require("./routes/destinationRoutes");
+const userRoutes=require("./routes/userRoutes");
+const { checkUser } = require("./middleware/authMiddleware");
 
 
 const app = express();
@@ -42,8 +44,8 @@ app.use(express.static("public"));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.use(parkingRoutes,authRoutes,destinationRoutes);
+app.use("*",checkUser);
+app.use(parkingRoutes,authRoutes,destinationRoutes,userRoutes);
 
 app.get("/",(req, res) => {
   res.render("index",{title:"Home"});
