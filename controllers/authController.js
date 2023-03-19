@@ -45,7 +45,7 @@ const createToken = (id) => {
 
 const signupGet=(req,res)=>{
 
-res.render("authentication/signup");
+res.render("authentication/signup",{title:"SignUp"});
 
 };
 const signup = async (req, res) => {
@@ -77,7 +77,7 @@ const signup = async (req, res) => {
 };
 
 const loginGet=(req,res) =>{
-  res.render("authentication/login")
+  res.render("authentication/login",{title:"Login"})
 };
 
  const login = async (req,res) =>{

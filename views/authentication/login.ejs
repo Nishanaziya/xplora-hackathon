@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Login </title>
-  <link rel="stylesheet" href="./style.css">
-
-</head>
+  <%- include('../partials/header.ejs') %>
 <body>
+  <%- include('../partials/nav.ejs') %>
 <!-- partial:index.partial.html -->
 <div id="bg"></div>
 
 <form>
+  <h2>Login</h2>
   <div class="form-field">
-    <input type="email" placeholder="Email / Username" required/>
+    Email <br>
+    <input type="email" />
   </div>
   
   <div class="form-field">
-    <input type="password" placeholder="Password" required/>                         </div>
+    Password <br>
+    <input type="password" />                         </div>
   
   <div class="form-field">
     <button class="btn" type="submit">Log in</button>

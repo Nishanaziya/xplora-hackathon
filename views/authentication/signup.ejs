@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    <%- include('../partials/header.ejs') %>
 <body>
+    <%- include('../partials/nav.ejs') %>
     <section id="registration-page">
         <form class="signup-form">
             
@@ -13,12 +14,12 @@
                 <!-- First name & Last name -->
                 <div class="row">
                     <div class="input-group">
-                        <label>First name </label>
+                        <label>First name </label><br>
                         <input type="text" placholder="Enter your first name" required id="fname"> <br />
                         <span class="error" id="fnameErr"></span><br />
                     </div>
                     <div class="input-group">
-                        <label>Last name</label>
+                        <label>Last name</label><br>
                         <input type="text" placholder="Enter your last name" required id="lname"><br />
                         <span class="error" id="lnameErr"></span><br />
                     </div>
@@ -26,19 +27,19 @@
                 <!-- Email -->
                 <div class="row">
                     <div class="input-group">
-                        <label>Email </label>
+                        <label>Email </label><br>
                         <input type="email" placholder="Enter your email address" required id="email"><br />
                         <span class="error" id="emailErr"></span><br />
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-group">
-                        <label>Phone </label>
+                        <label>Phone </label><br>
                         <input type="number" placholder="Enter your your number" required id="phone"><br />
                         <span class="error" id="phoneErr"></span><br />
                     </div>
                     <div class="input-group">
-                        <label>Password </label>
+                        <label>Password </label><br>
                         <input type="password" placholder="Enter your your password" required id="password"><br />
                         <span class="error" id="passwordErr"></span><br />
                     </div>
