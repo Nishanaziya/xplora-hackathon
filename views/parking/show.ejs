@@ -4,7 +4,7 @@
 
 <body bg="#78a7ba">
     <%- include('../partials/nav.ejs') %>
-
+   
     Address:<%= parking[0].address %> <br>
     Total Slots:<%= parking[0].totalSlots %>  <br>
     Available Slots: <%= parking[0].availableSlots%> <br>
@@ -16,9 +16,11 @@
         btn.addEventListener('click',function (){
              window.location.replace("http://localhost:3000/user/parking-slot-booking/<%= parking[0]._id %>");
         });
+
     </script>
     <%}else{%>
     <p> There are no available slots</p>
     <%}%>
 </body>
 </html>
+
