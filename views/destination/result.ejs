@@ -1,24 +1,48 @@
 <html>
     <%- include('../partials/header.ejs') %>
+    <style>
+        table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+    </style>
 <body bgcolor="#78a7ba">
     <%- include('../partials/nav.ejs') %>
-    
+    <br>
+    <br>
     <% if(destinations) { %>
-
+       <center> <table>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Available Tickets</th>
+            </tr>
         <% destinations.forEach( destination => { %>
-
-            <a href="/user/destination/<%= destination._id %>"><%= destination.name %></a>
-            <%= destination.category %>
-            <%= destination.price %>
-            <%= destination.availableTickets %>
-
+            <tr>
+                <td><a href="/user/destination/<%= destination._id %>"><%= destination.name %></a></td>
+                <td><%= destination.category %></td>
+                <td><%= destination.price %></td>
+                <td><%= destination.availableTickets %></td>
+            </tr>
        <% }) %>
-
+        </table> </center>
     <% } else { %>
-
-        <% } %>
-
+        <p>No destinations found.</p>
+    <% } %>
 
 </body>    
     
 </html>
+
