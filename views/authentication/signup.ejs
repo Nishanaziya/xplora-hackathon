@@ -1,104 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
     <%- include('../partials/header.ejs') %>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+    margin:0;
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
+}
+
+html, body {
+    height:100%; 
+     
+}
+
+#registration-page {
+    height:100%;
+    background:#78a7ba; 
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    overflow:scroll;
+}
+
+.signup-form  {
+    flex:1;
+    max-width:600px;
+    border-radius: 10px;
+    background-color: #EFF0F1;
+    border: 1px solid #999;
+    margin-top: auto;
+    margin-bottom:  auto;
+  }
+  
+/* FORM HEADER */
+.form-header {
+    padding:15px 0;
+    border-bottom:1px solid #cccccc;
+}
+
+.form-header h1 {
+    font-size: 28px;
+    text-align:center;
+    color:#666;
+}
+
+/* FORM BODY */
+.form-body {
+    background:white;
+    padding:5px 10px;
+}
+
+.row {
+    display:flex; 
+}
+  
+.input-group {
+    flex:1;  
+    display:flex;
+    flex-direction:column; 
+    margin:10px 5px;
+}
+
+/* FORM BODY - Gender & Hobbies */
+.radio-group, .checkbox-group {
+    display:flex;
+  }
+  
+  .radio-group div, .checkbox-group div {
+    flex:1;
+  }
+  
+  .radio-group label, .checkbox-group label  {
+    color:#666;
+    cursor:pointer;
+  }
+/* FORM BODY - Source of Income & Income */
+  .range-group {
+    display:flex;
+  }
+
+  .range-group input {
+      flex:1;
+  }
+
+  .range-group label {
+    margin-left:10px;
+    background-color: #1BBA93;
+    color:white;
+    border-radius: 5px;
+    padding:5px;
+    font-size:17px;
+    text-align:center;
+  }
+
+  nav{
+    background-color: black;
+  }
+
+/* MOBILE VIEW */
+@media only screen and (max-width: 500px) {
+    .row{
+      flex-direction:column; 
+    }
+
+    .btn {
+        flex:1;
+    }
+}
+
+
+/* FORM FOTTER */
+.form-footer {
+    display:flex;
+    justify-content: flex-end;
+    padding:10px;
+}
+
+.btn {
+    padding:10px 20px;
+    background-color: #1BBA93;
+    font-size:17px;
+    border:none;
+    border-radius:5px;
+    color:#bcf5e7;
+    cursor:pointer;
+ }
+
+ /* INPUT*/
+
+ label {
+  color:#1BBA93;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"] ,
+input[type="password"],
+input[type="file"],
+input[type="number"],
+select,
+textarea  {
+width:100%;
+
+font-size: 18px;
+height: 34px;
+padding-left: 10px;
+padding-right: 10px;
+color: #666;
+border: 1px solid #d6d6d6;
+border-radius: 4px;
+background: white;
+outline: none;
+}
+
+
+textarea {
+  resize: none;
+  height:100px;
+}
+    </style>
 <body>
     <%- include('../partials/nav.ejs') %>
-    <section id="registration-page">
-        <form class="signup-form">
-            
-            <div class="form-header">
-                <h1>Create Account</h1>
-            </div>
-            
-            <div class="form-body">
-                <!-- First name & Last name -->
-                <div class="row">
-                    <div class="input-group">
-                        <label>First name </label><br>
-                        <input type="text" placholder="Enter your first name" required id="fname"> <br />
-                        <span class="error" id="fnameErr"></span><br />
-                    </div>
-                    <div class="input-group">
-                        <label>Last name</label><br>
-                        <input type="text" placholder="Enter your last name" required id="lname"><br />
-                        <span class="error" id="lnameErr"></span><br />
-                    </div>
+    <body>
+        <section id="registration-page">
+            <form class="signup-form">
+                
+                <div class="form-header">
+                    <h1>Create Account</h1>
                 </div>
-                <!-- Email -->
-                <div class="row">
-                    <div class="input-group">
-                        <label>Email </label><br>
-                        <input type="email" placholder="Enter your email address" required id="email"><br />
-                        <span class="error" id="emailErr"></span><br />
+                
+                <div class="form-body">
+                    <!-- First name & Last name -->
+                    <div class="row">
+                        <div class="input-group">
+                            <label>First name </label>
+                            <input type="text" placholder="Enter your first name" required id="fname"> <br />
+                            <span class="error" id="fnameErr"></span><br />
+                        </div>
+                        <div class="input-group">
+                            <label>Last name</label>
+                            <input type="text" placholder="Enter your last name" required id="lname"><br />
+                            <span class="error" id="lnameErr"></span><br />
+                        </div>
                     </div>
+                    <!-- Email -->
+                    <div class="row">
+                        <div class="input-group">
+                            <label>Email </label>
+                            <input type="email" placholder="Enter your email address" required id="email"><br />
+                            <span class="error" id="emailErr"></span><br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-group">
+                            <label>Phone </label>
+                            <input type="number" placholder="Enter your your number" required id="phone"><br />
+                            <span class="error" id="phoneErr"></span><br />
+                        </div>
+                        <div class="input-group">
+                            <label>Password </label>
+                            <input type="password" placholder="Enter your your password" required id="password"><br />
+                            <span class="error" id="passwordErr"></span><br />
+                        </div>
+                    </div>
+      
+                <!--  FORM FOOTER   -->
+                <div class="form-footer">
+                    <button class="btn" id="btn">Create</button>
                 </div>
-                <div class="row">
-                    <div class="input-group">
-                        <label>Phone </label><br>
-                        <input type="number" placholder="Enter your your number" required id="phone"><br />
-                        <span class="error" id="phoneErr"></span><br />
-                    </div>
-                    <div class="input-group">
-                        <label>Password </label><br>
-                        <input type="password" placholder="Enter your your password" required id="password"><br />
-                        <span class="error" id="passwordErr"></span><br />
-                    </div>
-                </div>
-  
-            <!--  FORM FOOTER   -->
-            <div class="form-footer">
-                <button class="btn" id="btn">Create</button>
-            </div>
-        </form>
-    </section>
-
-    <script>
-        const changeSliderValue = (value) => {
-            document.getElementById("rangeSliderLabel").innerText = value + " K";
-        }
-
-        const form = document.querySelector("form");
-        const fnameErr = document.getElementById("fnameErr");
-        const lnameErr = document.getElementById("lnameErr");
-        const emailErr = document.getElementById("emailErr");
-        const phoneErr = document.getElementById("phoneErr");
-        const passwordErr = document.getElementById("passwordErr");
-
-
-        const btn = document.querySelector("button");
-        form.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const fname = document.getElementById("fname").value;
-          const lname = document.getElementById("lname").value;
-          const phone = document.getElementById("phone").value;
-          const email = document.getElementById("email").value;
-          const password = document.getElementById("password").value;
-          //console.log(fname, lname, email, password);
-          emailErr.textContent = "";
-          passwordErr.textContent = "";
-          try {
-            const res = await fetch("/auth/signup", {
-              method: "POST",
-              body: JSON.stringify({ fname, lname,phone, email, password }),
-              headers: { "Content-Type": "application/json" },
+            </form>
+        </section>
+    
+        <script>
+            const changeSliderValue = (value) => {
+                document.getElementById("rangeSliderLabel").innerText = value + " K";
+            }
+    
+            const form = document.querySelector("form");
+            const fnameErr = document.getElementById("fnameErr");
+            const lnameErr = document.getElementById("lnameErr");
+            const emailErr = document.getElementById("emailErr");
+            const phoneErr = document.getElementById("phoneErr");
+            const passwordErr = document.getElementById("passwordErr");
+    
+    
+            const btn = document.querySelector("button");
+            form.addEventListener("submit", async (e) => {
+              e.preventDefault();
+              const fname = document.getElementById("fname").value;
+              const lname = document.getElementById("lname").value;
+              const phone = document.getElementById("phone").value;
+              const email = document.getElementById("email").value;
+              const password = document.getElementById("password").value;
+              //console.log(fname, lname, email, password);
+              emailErr.textContent = "";
+              passwordErr.textContent = "";
+              try {
+                const res = await fetch("/auth/signup", {
+                  method: "POST",
+                  body: JSON.stringify({ fname, lname,phone, email, password }),
+                  headers: { "Content-Type": "application/json" },
+                });
+                const data = await res.json();
+                console.log(data);
+                if (data.errors) {
+                  fnameErr.textContent = data.errors.fname;
+                  lnameErr.textContent = data.errors.lname;
+                  phoneErr.textContent = data.errors.phone;
+                  emailErr.textContent = data.errors.email;
+                  passwordErr.textContent = data.errors.password;
+                }
+                if (data.user) {
+                  location.assign("/");
+                }
+              } catch (err) {
+                console.log(err);
+              }
             });
-            const data = await res.json();
-            console.log(data);
-            if (data.errors) {
-              fnameErr.textContent = data.errors.fname;
-              lnameErr.textContent = data.errors.lname;
-              phoneErr.textContent = data.errors.phone;
-              emailErr.textContent = data.errors.email;
-              passwordErr.textContent = data.errors.password;
-            }
-            if (data.user) {
-              location.assign("/");
-            }
-          } catch (err) {
-            console.log(err);
-          }
-        });
-    </script>
+        </script>
+    
 
 </body>
 
