@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/header.ejs') %>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+    <%=user.fname%>     <%=user.lname%> <br>
+
+    <%=user.email%> <br>
+
+    <%=user.phone%> <br>
+    <a href="/user/bookings/<%=user._id%>">Tickets</a>
+
+
+
+
+    </body>
+</html>
